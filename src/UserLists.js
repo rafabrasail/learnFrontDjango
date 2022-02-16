@@ -12,7 +12,7 @@ export default class UserLists extends React.Component{
                 'Content-Type': 'application/json'
             }
         }
-        config.headers['Authorization'] = 'Token da6bfb3dd1ce2fdfc540a51fce4509cec341db39'
+        config.headers['Authorization'] = 'Token ' + localStorage.getItem('token')
 
         var url = 'http://127.0.0.1:8000/list/';
         const response = await fetch(url, config);
@@ -23,9 +23,9 @@ export default class UserLists extends React.Component{
 
     render(){
         const listApi = this.state.lists;
-        var token = '';
+        var token = localStorage.getItem('token')
 
-        if(token === '')
+        if(!token)
             {return <LoginComponent />}
         else
             return(
