@@ -35,6 +35,11 @@ constructor(props) {
     event.preventDefault();
   }
 
+  logout(){
+    localStorage.removeItem('token');
+    this.setState({token: null});
+  }
+
   render() {
     var token = localStorage.getItem('token');
 
@@ -50,6 +55,11 @@ constructor(props) {
         </form>
       );
     else
-        return <UserLists />
+        return (
+          <div>
+            <UserLists />
+            <button onClick={() => this.logout()}>LogOut</button>
+          </div>
+        )
   }
 }
